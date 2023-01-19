@@ -11,6 +11,7 @@
         justify-content: end
         align-items: center
         padding: 0 4rem 0 0
+
 .hamburger
     border: none
     background-color: $color-gray-light
@@ -26,4 +27,54 @@
         transform: translateY(-1.5rem)
     &::after
         transform: translateY(1.5rem)
-        
+
+.hamburger_active
+    visibility: hidden
+    z-index: 30
+    &::before
+        visibility: visible
+        transform: translateY(3px) rotate(-45deg)
+    &::after
+        visibility: visible
+        transform: translateY(2px) rotate(45deg)
+
+.nav-sidebar
+    position: fixed
+    top: 0
+    left: 0
+    height: 100vh
+    width: 20%
+    background: $color-green-dark
+    z-index: 20
+    transition: 1s all
+    display: flex
+    justify-content: center
+    transform: translateX(-100%)
+    @include respond(tab-land)
+        left: unset
+        right: 0
+        transform: translateX(200%)
+        width: 30%
+    @include respond(tab-port)
+        width: 50%
+    &__list
+        list-style-type: none
+        display: flex
+        flex-direction: column
+        justify-content: space-evenly
+    &__link
+        &:link, &:visited
+            font-size: 2rem
+            font-weight: 400
+            text-transform: uppercase
+            text-decoration: none
+            color: $color-gray-light
+            transition: .4s all
+            display: inline-block
+            padding: 1rem 2rem
+        &:hover, &:active
+            color: $color-green-light
+            text-decoration: underline
+            transform: translateY(-.3rem)
+    &_active
+        transform: translateX(0)
